@@ -90,7 +90,7 @@
     [self.labelParentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.imageView.mas_right).offset(10);
         
-        make.right.greaterThanOrEqualTo(self.backView.mas_right).offset(-10);
+        make.right.equalTo(self.backView.mas_right).offset(-10);
    
         make.top.greaterThanOrEqualTo(self.backView.mas_top).offset(10);
         make.centerY.equalTo(self.backView.mas_centerY);
@@ -123,18 +123,19 @@
     
     UITextField *imageWidthTF = [[UITextField alloc] init];
     imageWidthTF.backgroundColor = [UIColor whiteColor];
-    
+    imageWidthTF.placeholder = @"图片宽";
     [self.view addSubview:imageWidthTF];
     self.imageWidthTF = imageWidthTF;
     [self.imageWidthTF mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.view.mas_bottom).offset(-150);
         make.left.equalTo(self.view.mas_left).offset(10);
-        make.width.equalTo(@(30));
+        make.width.equalTo(@(60));
         
     }];
 
     UITextField *imageHeightTF = [[UITextField alloc] init];
     imageHeightTF.backgroundColor = [UIColor whiteColor];
+    imageHeightTF.placeholder = @"图片高";
     [self.view addSubview:imageHeightTF];
     self.imageHeightTF = imageHeightTF;
     [self.imageHeightTF mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -145,6 +146,7 @@
     }];
     
     UITextView *bottomTextView = [[UITextView alloc] init];
+    bottomTextView.text = @"第二个label的文字";
     [self.view addSubview:bottomTextView];
     self.bottomTextView = bottomTextView;
     
@@ -158,6 +160,7 @@
     
     
     UITextView *topTextView = [[UITextView alloc] init];
+    topTextView.text = @"第一label的文字";
     [self.view addSubview:topTextView];
     self.topTextView = topTextView;
     [self.topTextView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -198,16 +201,11 @@
     [self.view setNeedsUpdateConstraints];
     
     [self.view updateConstraintsIfNeeded];
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
     NSLog(@"click me");
 }
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    //[self.view endEditing:YES];
-}
 
-- (void)updateViewConstraints
-{
-    
-    [super updateViewConstraints];
-}
+
+
 @end
